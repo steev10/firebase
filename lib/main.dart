@@ -1,9 +1,17 @@
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/views/list_views.dart';
+import 'package:flutter_application_2/views/new.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -12,6 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: ListView2());
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        home: CallFirebase());
   }
 }
+
+// void callDatabase() {
+//   final reg = FirebaseDatabase.instance.ref();
+//   final obj = reg.child('registros/1').get();
+//   print(obj.value);
+// }
