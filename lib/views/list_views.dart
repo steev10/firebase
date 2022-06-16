@@ -1,4 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+
+import '../dominios/coneccion_firebase.dart';
+import '../entidades/registros.dart';
 
 class ListView2 extends StatelessWidget {
   ListView2({Key? key}) : super(key: key);
@@ -21,6 +25,7 @@ class ListView2 extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    callDatabase();
     return Scaffold(
         appBar: AppBar(title: const Text(' video games')),
         body: ListView.builder(
@@ -46,5 +51,18 @@ class ListView2 extends StatelessWidget {
                 title: Text(games[index]["name"]!),
               );
             }));
+  }
+
+  static final FirebaseDatabase _database = FirebaseDatabase.instance;
+
+  DatabaseReference instanceFirebase() {
+    return _database.ref('/registros');
+  }
+
+  void callDatabase() async {
+    DatabaseReference _registros = instanceFirebase();
+    DataSnapshot response = await _registros.get();
+    print('-----------------------------');
+    print(response.value);
   }
 }
