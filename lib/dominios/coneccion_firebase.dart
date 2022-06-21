@@ -6,7 +6,7 @@ class FirebaseConnection {
   static final FirebaseDatabase _database = FirebaseDatabase.instance;
 
   DatabaseReference instanceFirebase() {
-    return _database.ref('/registros');
+    return _database.ref('/registros/registros');
   }
 
   Future<ResponseFirebase> getAllRegistros() async {
@@ -15,10 +15,9 @@ class FirebaseConnection {
       DataSnapshot response = await _registros.get();
       print('-----------------------------');
       print(response.value);
-      final respuesta = response.value;
-      final responseMap = Map<String, dynamic>.from(response.value as Map);
-      final lista = responseMap.values.toList();
-      final registers = ResponseFirebase.fromJson(lista);
+
+      final responseMap = response.value as List;
+      final registers = ResponseFirebase.fromJson(responseMap);
       return registers;
     } catch (e) {
       rethrow;

@@ -26,18 +26,18 @@ class _CallFirebaseState extends State<CallFirebase> {
                         Image.network(registros[index].image!).image),
                 title: Text(
                     '${registros[index].nombre!} ${registros[index].apellido!}'),
-                // onTap: () {
-                //   AlertDialog alert = const AlertDialog(
-                //       title: Text('no client found'),
-                //       content: Text(
-                //           'the client has not been found please tap on another client'));
-                //   showDialog(
-                //     context: context,
-                //     builder: (BuildContext context) {
-                //       return alert;
-                //     },
-                //   );
-                // },
+                onTap: () {
+                  AlertDialog alert = const AlertDialog(
+                      title: Text('no client found'),
+                      content: Text(
+                          'the client has not been found please tap on another client'));
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                },
               );
             }));
   }
@@ -47,6 +47,7 @@ class _CallFirebaseState extends State<CallFirebase> {
     if (registros.isEmpty) {
       setState(() {
         registros = response.registros!;
+        print(registros);
       });
     }
   }
